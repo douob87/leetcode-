@@ -1,5 +1,5 @@
 //(a/b) % p => 轉換成 a * b^-1(a 乘上 b的逆元)
-//b = qpow(b, MOD-2) % MOD, 費馬小定理
+//b = qpow(b, MOD-2) % MOD, 費馬小定理...
 int MOD = 1'000'000'007;//1e9 + 7
 int MX = 41;
 int F[MX];
