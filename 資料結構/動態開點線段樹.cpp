@@ -16,11 +16,11 @@ class segmentTree{
 		}
 		int m = l + (r - l) / 2;
 		if(m >= x){
-			if(!o->left)o->left = new Node();
+			if(!o->left)o->left = new Node();//沒有就新增
 			update(o->left, l, m, x);
 		}
 		if(m < x){
-			if(!o->right)o->right = new Node();
+			if(!o->right)o->right = new Node()//沒有就新增
 			update(o->right, m+1, r, x);
 		}
 		maintain(o);
@@ -36,9 +36,9 @@ class segmentTree{
 	}
 public:
 	int MN,MX;//上下界
-	segmentTree(int min, int max):MN(min),MX(max){}
 	Node* root = new Node();
-	
+
+	segmentTree(int min, int max):MN(min),MX(max){}
 	void update(int x){
 		update(root, MN, MX, x);
 	}
@@ -46,3 +46,8 @@ public:
 		return query(root, MN, MX, ql, qr);
 	}
 };
+/*
+segmentTree t(mn, mx);
+t.update(x);
+t.query(l, r);
+*/
