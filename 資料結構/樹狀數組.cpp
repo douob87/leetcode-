@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 class FenWick{
     vector<int> t;
     int sz;
@@ -24,11 +26,15 @@ public:
         return pre(r+1) - pre(l);
     }
 };
+int main(){
+    vector<int> nums = {1, 2, 3, 4, 5};
+    int n = nums.size();
+    FenWick t(n);
+    for(int i=0;i<n;i++)t.update(i+1, nums[i]);
+    cout<<t.pre(3)<<endl;
+    cout<<t.query(2, 4)<<endl;
+}
 /*
-vector<int> nums = {1, 2, 3, 4, 5};
-int n = nums.size();
-FenWick t(n);
-
 t.update(i+1, 1); => 更新 nums[i]
 t.pre(i+1); => 計算 nums[0 ~ i] 的和
 t.query(l, r) => 計算 nums[l ~ r] 的和
