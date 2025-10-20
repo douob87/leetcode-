@@ -9,7 +9,7 @@ public:
         int i = x;
         while(i <= sz){
             t[i] += add;
-            i += i&-i;
+            i += i&-i;//加上 low bit
         }
     }
     //找 [1 ~ x] 的和 (1 - index)
@@ -17,7 +17,7 @@ public:
         int sum = 0, i = x;
         while(i > 0){
             sum += t[i];
-            i -= i&-i;
+            i -= i&-i;//減去 low bit
         }
         return sum;
     }

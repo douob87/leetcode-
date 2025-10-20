@@ -22,7 +22,7 @@ class SegmentTree{
     }
     void do_(int o, int l, int r, int val){
         t[o] += (r-l+1) * val;
-        todo[o] = val;
+        todo[o] = val;//lazy tag
     }
     int query(int o, int l, int r, int ql, int qr){
         if(ql<=l && r<=qr){
