@@ -1,3 +1,11 @@
+/*
+如果要找最近 且 嚴格大於的話 => 代表只要當前數值 小於等於 nums[stk.back()]就要pop
+
+嚴格< : nums[stk.back()] >= x
+嚴格> : nums[stk.back()] <= x
+嚴格<= : nums[stk.back()] > x
+嚴格>= : nums[stk.back()] < x
+*/
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
