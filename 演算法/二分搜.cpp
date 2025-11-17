@@ -51,3 +51,16 @@ while(left + 1 < right){
     }
 }
 return right;
+
+//leetcode 二分 開區間模板
+int left = -1, right = n;//(-1, n) 
+auto check = [&](int x){
+    //pass
+};
+while(left+1 < right){
+    int mid = left + (right - left) / 2;
+    (check(mid) ? right : left) = mid; //(最大值 最小化) FFFFFTTTTT
+  //(check(mid) ? left : right) = mid; //(最小值 最大化) TTTTTFFFFF
+}
+return right;
+//return left;
