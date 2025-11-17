@@ -4,6 +4,13 @@ int strStr(string text, string pattern) {
     pattern.append(text);
     vector<int> z(N, 0);
     for(int i=1;i<N;i++){
+        //z[i-left] 表示 s[i-left] 開始的 後綴 能匹配多少長度的 前綴。
+        //right - i + 1 表示 s[i] 開始的後綴 "最多"能免費匹配 多少長度的 前綴。
+        
+        //s[0]
+        // |  
+        //[i   ...   R     ] => z[i-left]
+        //[i   ...   R]      => right - i + 1
         if(i <= right)
             z[i] = min(z[i-left], right-i+1);
 
