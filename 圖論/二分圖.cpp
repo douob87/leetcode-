@@ -1,4 +1,4 @@
-//判斷graph(無向圖)是不是二分圖, 0(未塗色)，1(塗紅色)，2(塗藍色)
+//判斷graph(無向圖)是不是二分圖, 0(未塗色)，1(塗紅色)，-1(塗藍色)
 int n;//vertex個數
 vector<vector<int>> graph;
 vector<int> color(n, 0);
