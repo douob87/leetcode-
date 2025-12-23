@@ -64,3 +64,34 @@ while(left+1 < right){
 }
 return right;
 //return left;
+
+//庫函數 左閉右開
+lower_bound(nums.begin(), nums.end(), target);//找第一個 >= target, 減 1 變成 找最後一個 < target的number
+upper_bound(nums.begin(), nums.end(), target);//找第一個 > target, 減 1 變成 找最後一個 <= target的number
+
+//對 vector<vector<int>> 中的第 i 個 二分 
+lower_bound(nums.begin(), nums.end(), target, [](auto& e, int val){
+    return e[i] < val;
+});
+while(left < right){
+    int i = left + (right - left)/2;
+    if(e[i] < val){
+        left = i + 1;
+    }else{
+        right = i;
+    }
+    return left;
+}
+
+upper_bound(nums.begin(), nums.end(), target, [](int val, auto& e){
+    return e[i] > val;
+});
+while(left < right){
+    int i = left + (right - left)/2;
+    if(e[i] > val){
+        right = i;
+    }else{
+        left = i + 1;
+    }
+    return right;
+}
