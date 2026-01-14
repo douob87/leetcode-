@@ -12,6 +12,9 @@ int strStr(string text, string pattern) {
         //[i   ...   R     ] => z[i-left]
         //[i   ...   R]      => right - i + 1
         if(i <= right)
+            //以z[i - left] 為主，若 z[i - left] <= z[right-i+1] ，選 z[i - left]
+            //                   若 z[i - left] > right-i+1 ，選 right-i+1
+            //=> *選 min(z[i-left], right-i+1)
             z[i] = min(z[i-left], right-i+1);
 
         while(i+z[i]<N && pattern[z[i]]==pattern[i+z[i]]){
