@@ -1,5 +1,5 @@
 /*
-如果要找最近 且 嚴格大於的話 => 代表只要當前數值 小於等於 nums[stk.back()]就要pop
+如果要找最近 且 嚴格大於的話 => 代表只要當前數值 大於等於 nums[stk.back()]就要pop() ， pop()完之後，x < nums[stk.back()] 
 
 嚴格< : nums[stk.back()] >= x
 嚴格> : nums[stk.back()] <= x
