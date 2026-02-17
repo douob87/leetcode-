@@ -51,13 +51,79 @@ public:
     }
     
     int getKthAncestor(int node, int k) {
-        int m = log2(k) + 1;
-        for(int i=0;i<m;i++){
-            if(k>>i & 1){
-                node = fa[node][i];
-            }
-            if(node < 0)break;
+        for(;k && node>=0;){
+            node = pa[node][__builtin_ctz(k)];
+            k &= (k-1);
         }
         return node;
+    }
+};
+//lca + 樹上時間戳 + kth_ancestor
+class LcaBinaryLifting{
+    vector<int> depth;
+    vector<vector<int>> pa;
+public:
+    vector<int> in, out;
+    LcaBinaryLifting(vector<vector<int>>& edges){
+        int n = edges.size() + 1//自行調整成 node 個數
+        int m = __lg(n) + 1;
+        vector<vector<int>> g(n);
+        for(auto& e : edges){
+            int u = e[0], v = e[1];
+            g[u].push_back(v);
+            g[v].push_back(u);
+        }
+
+        int time = 0;//全局時間戳
+        depth.resize(n);//node 深度
+        in.resize(n);
+        out.resize(n);
+        pa.resize(n, vector<int>(m, -1));
+
+        auto dfs = [&](this auto&& dfs, int x, int fa)->void{
+            pa[x][0] = fa;
+            in[x] = ++time;
+            for(int y : g[x]){
+                if(y != fa){
+                    depth[y] = depth[x] + 1;
+                    dfs(y, x);
+                }
+            }
+            out[x] = time;
+        };
+        dfs(0, -1);
+
+        //x 往上 4 個 = x 往上 2 個 再 往上 2 個。
+        //pa[x][2] = pa[pa[x][1]][1] = pa[x][i+1] = pa[pa[x][i]][i];
+        for(int i=0;i<m-1;i++){
+            for(int x=0;x<n;x++){
+                int p = pa[x][i];
+                if(p != -1){
+                    pa[x][i+1] = pa[p][i];
+                }
+            }
+        }
+    }
+    int kth_ancestor(int node, int k){
+        //往上k=13(1101)個node -> 往上2^0 + 2^2 + 2^3
+        //__builtin_ctz()後綴零、__builtin_clz()前綴零、__builtin_popcount() 1's數量。
+        while(node>=0 && k){
+            node = pa[node][__builtin_ctz(k)];
+            k &= (k-1);
+        }
+        return node;
+    }
+    int lca(int x, int y){
+        if(depth[x] > depth[y])swap(x, y);//讓node[x]的depth 小，node[y]的depth 大
+        y = kth_ancestor(y, depth[y] - depth[x]);//讓node[y]上升到node[x]的高度
+        if(x == y)return x;
+        for(int i=pa[0].size()-1;i>=0;i--){
+            int px = pa[x][i], py = pa[y][i];
+            if(px != py){
+                x = px;
+                y = py;
+            }
+        }
+        return pa[x][0];
     }
 };

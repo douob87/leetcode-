@@ -2,28 +2,22 @@
 using namespace std;
 class FenWick{
     vector<int> t;
-    int sz;
 public:
-    FenWick(int n):t(n+1), sz(n){}
-    void update(int x, int add){
-        int i = x;
-        while(i <= sz){
-            t[i] += add;
+    FenWick(int n):t(n+1){}
+    void update(int i, int add){
+        while(i < t.size()){
+            t[i] ^= add;
             i += i&-i;//加上 low bit
         }
     }
     //找 [1 ~ x] 的和 (1 - index)
-    int pre(int x){
-        int sum = 0, i = x;
+    int pre(int i){
+        int sum = 0;
         while(i > 0){
-            sum += t[i];
+            sum ^= t[i];
             i -= i&-i;//減去 low bit
         }
         return sum;
-    }
-    //找 [l, r] 的和 (0 - index)
-    int query(int l, int r){
-        return pre(r+1) - pre(l);
     }
 };
 int main(){
