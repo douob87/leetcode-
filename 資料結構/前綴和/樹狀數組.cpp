@@ -19,6 +19,10 @@ public:
         }
         return sum;
     }
+    //0-index
+    int query(int l, int r){
+        return pre(r+1) - pre(l);
+    }
 };
 int main(){
     vector<int> nums = {1, 2, 3, 4, 5};
