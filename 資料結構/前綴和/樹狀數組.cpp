@@ -4,9 +4,9 @@ class FenWick{
     vector<int> t;
 public:
     FenWick(int n):t(n+1){}
-    void update(int i, int add){
+    void update(int i, int x){
         while(i < t.size()){
-            t[i] ^= add;
+            t[i] += x;//自行修正(+ - ^)
             i += i&-i;//加上 low bit
         }
     }
@@ -14,7 +14,7 @@ public:
     int pre(int i){
         int sum = 0;
         while(i > 0){
-            sum ^= t[i];
+            sum += t[i];
             i -= i&-i;//減去 low bit
         }
         return sum;
