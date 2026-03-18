@@ -4,7 +4,7 @@ public:
     vector<int> conn;
     int cc;   
     UnionFind(int n){
-        conn.assign(n, 0)
+        conn.assign(n, 1);
         parent.assign(n, 0);
         iota(parent.begin(), parent.end(), 0);
         cc = n;
