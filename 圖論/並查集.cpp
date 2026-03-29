@@ -37,3 +37,45 @@ uf.Reset(node); => 刪除邊
 uf.Connected(u, v); => 確認u, v是否在同一個連通塊
 uf.conn[Find(node)]; => node的連通塊個數
 */
+
+//帶權並查集
+class UnionFind{
+    vector<int> pa, dis;
+public:
+    UnionFind(int n) : pa(n), dis(n){
+        ranges::iota(pa, 0);
+    }
+    bool Union(int from, int to, int val){
+        int x = Find(x);
+        int y = Find(y);
+        /*
+                    x
+                    |
+                    |
+                   / \
+                  /   \
+                from  to
+        */
+        //from -> to = (from->x) - (to->x) = dis[from] - dis[to]
+        if(x == y)return (dis[from] - dis[to]) == val;
+        /*
+             x           y
+            /           /
+           /           /
+         from---------to
+        */
+        // to->y + from->to = x->y + from->x, so x->y = (from->to) + (to->y) - (from->x); 
+        //x -> y = 
+        dis[x] = val + dis[to] - dis[from];
+        return true;
+    }
+    //遞歸，若在 recursion 前執行動作，則代表在"遞"的時候處理。反之，則代表在"歸"。
+    int Find(int x){
+        if(pa[x] != x){
+            int root = Find(pa[x]);
+            dis[x] += dis[pa[x]];
+            pa[x] = root;
+        }
+        return pa[x];
+    }
+};
