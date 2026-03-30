@@ -57,6 +57,7 @@ public:
                 from  to
         */
         //from -> to = (from->x) - (to->x) = dis[from] - dis[to]
+        //dis代表相對距離，可能小於0。
         if(x == y)return (dis[from] - dis[to]) == val;
         /*
              x           y
