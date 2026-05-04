@@ -69,9 +69,10 @@ return right;
 lower_bound(nums.begin(), nums.end(), target);//找第一個 >= target, 減 1 變成 找最後一個 < target的number
 upper_bound(nums.begin(), nums.end(), target);//找第一個 > target, 減 1 變成 找最後一個 <= target的number
 
-//對 vector<vector<int>> 中的第 i 個 二分 
+//對 vector<vector<int>> 中的第 ? 個 二分 
+//eg. x = {{0, 0}, {1, 1}} //對x[i] 的第 ? 個值 二分。 
 lower_bound(nums.begin(), nums.end(), target, [](auto& e, int val){
-    return e[i] < val;
+    return e[?] < val;
 });
 while(left < right){
     int i = left + (right - left)/2;
