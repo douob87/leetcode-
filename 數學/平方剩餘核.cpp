@@ -3,9 +3,9 @@
 int MX = 1'000'01;
 vector<int> core(MX, 0);
 
-for(int i=2;i<MX;i++){
+for(int i=1;i<MX;i++){
     if(core[i] != 0)continue;//已經被標記
-    for(long long j=1;i*j*j<MX;j+=i){
+    for(long long j=1;i*j*j<MX;j++){
         core[i*j*j] = i;
     }
 }
